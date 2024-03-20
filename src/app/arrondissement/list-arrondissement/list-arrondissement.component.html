@@ -1,0 +1,53 @@
+
+
+<p-table [value]="arrondissements" [paginator]="true" [rows]="4"  [showCurrentPageReport]="true"
+[tableStyle]="{ 'min-width': '50rem' }"
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+<ng-template pTemplate="header" >
+  <tr>
+      
+      <th style="width:20%">#</th>
+      <th style="width:20%">Nom de l'arrondissement</th>
+      <th style="width:20%"></th>
+      <th style="width:20%"></th>
+     
+      <th style="width:20%"></th>
+      <th style="width:20%"></th>
+      <th style="width:20%"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-a let-editing="edidting" let-ri="rowIndex">
+    <tr [pEditableRow]="a" >
+
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="a.id">  
+          </ng-template>
+          <ng-template pTemplate="output">
+              {{a.id}}
+          </ng-template>
+      </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="a.nom">  
+          </ng-template>
+          <ng-template pTemplate="output">
+              {{a.nom}}
+          </ng-template>
+      </p-cellEditor>
+      </td>
+      <td></td>
+      <td></td>
+  
+      <td><p-button severity="info" icon="pi pi pi-pencil" [style]="btStyle" [routerLink]="['/arrondissement','edit',a.id]" ></p-button></td>
+      <td><p-button severity="danger" icon="pi pi-minus-circle" [style]="btStyle" (click)="deleteArrondissement(a.id)"></p-button></td>
+      
+
+
+   </tr>
+  </ng-template>
+</p-table>
+<p-button severity="success" [routerLink]="['/arrondissement','add']" icon="pi pi-plus-circle" [style]="buttonStyle"></p-button>

@@ -1,0 +1,43 @@
+
+<div class="container mt-4">
+  <h1> Modifier les donnees d'un terrain </h1>
+  <form *ngIf="editTerrainForm" [formGroup]="editTerrainForm" (ngSubmit)="editTerrain()" class="needs-validation"  class="row g-3">
+
+    
+    <div class="col-md-5">
+      
+      <input type="text" class="form-control" id="prenom" name="prenom" formControlName="prenom" [hidden]="true">
+      <div class="valid-feedback"></div>
+    </div>
+    <div class="col-md-5">
+
+      <input type="text" class="form-control" id="prenom" name="prenom" formControlName="prenom" [hidden]="true">
+      <div class="valid-feedback"></div>
+    </div>
+    <div class="col-md-5">
+      <label for="surface" class="form-label">Surface</label>
+      <input type="number" class="form-control" id="surface" name="surface" formControlName="surface">
+      <div class="valid-feedback"></div>
+    </div>
+    <div class="col-md-4">
+      <label for="adresse" class="form-label">Adresse</label>
+      <input type="text" class="form-control" id="adresse" name="adresse" formControlName="adresse">
+      <div class="valid-feedback"></div>
+    </div>
+    <div class="col-md-4">
+        <label for="idProp" class="form-label"> id proprietaire</label>
+        <input type="number" class="form-control" id="idProp" name="idProp" formControlName="idProp">
+        <div class="valid-feedback"></div>
+      </div>
+      <div class="col-md-4">
+        <label for="idRue" class="form-label"> id rue</label>
+        <input type="number" class="form-control" id="idRue" name="idRue" formControlName="idRue">
+        <div class="valid-feedback"></div>
+      </div>
+    <br><br>
+   
+      <button class="btn btn-dark" type="submit">Modifier</button>
+    
+  </form>
+</div>
+

@@ -1,0 +1,158 @@
+<div class="interface-container">
+    
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="row g-2" id="form">
+    <div class="interface-form-container col-md-4">
+      <h2>Proprietaire</h2>
+     
+        <div >
+          <label for="nom">Nom :</label>
+          <input type="text" class="form-control" id="nom" name="nom" ngModel required >
+        </div>
+  
+        <div >
+          <label for="prenom">Prénom :</label>
+          <input type="text" class="form-control" id="prenom" name="prenom" ngModel required >
+        </div>
+  
+        <div >
+          <label for="cin">CIN :</label>
+          <input type="number"  class="form-control" id="cin" name="cin" ngModel number required >
+        </div>
+  
+        <div >
+          <label for="telephone">Téléphone :</label>
+          <input type="tel" class="form-control" id="tel" name="tel"ngModel required number >
+        </div>
+  
+        <div >
+          <label for="adresse">Adresse :</label>
+          <input type="text" class="form-control" id="adresse" name="adresse" ngModel required >
+        </div>
+  
+        <div >
+          <label for="email">Email :</label>
+          <input type="email"  class="form-control" id="email" name="email" ngModel email required >
+        </div>
+  
+       
+      
+    </div>
+    <div class="interface-form-container col-md-4">
+      <h2>Terrain Non Bâti</h2>
+      
+        <div >
+          <label for="arrondissement">Arrondissement :</label>
+          <select id="arrondissement" name="arrondissement" [(ngModel)]="selectedArrondissement" (change)="OnArrondissementChange()" required >
+            <option value="" disabled selected>Choisissez l'arrondissement</option>
+            <option *ngFor="let a of arrondissements" [ngValue]="a">{{a.nom}}</option>
+          </select>
+        </div>
+  
+        <div *ngIf="showZoneSelector">
+          <label for="zone">Zone :</label>
+          <select id="zone" name="zone" [(ngModel)]="selectedZone" required (change)="OnZoneChange()" >
+            <option value="" disabled selected>Choisissez la zone</option>
+            <option *ngFor="let z of zones" [ngValue]="z">{{z.nom}}</option>
+        </select>
+        </div>
+  
+        <div *ngIf="showRueSelector">
+          <label for="rue">Rue :</label>
+          <select id="rue" name="rue" [(ngModel)]="selectedRue" required >
+            <option value="" disabled selected>Choisissez la rue</option>
+            <option *ngFor="let r of rues" [ngValue]="r">{{r.nom}}</option>
+          </select>
+        </div>
+        <div >
+          <label for="surface">Surface :</label>
+          <input class="form-control" id="surface" name="surface" ngModel number >
+        </div>
+        <div>
+          <label for="adresse" class="form-label">adresse</label>
+          <input type="text" class="form-control" id="adresse" name="adresseT" ngModel required #n="ngModel"  >
+        </div>
+      
+    </div>
+    <div class="interface-form-container col-md-4" >
+      <h2>Calculateur de Taxe</h2>
+      
+
+
+
+        <div class="row g-2" >
+          <label for="methode">Methode de calcul : </label>
+
+          <div class="flex flex-wrap gap-3" >
+            <div class="flex align-items-center">
+                <p-radioButton name="calculationMethod" value="1" [(ngModel)]="selectedCalculationMethod" ></p-radioButton>
+                <label for="densite" class="ml-2">densite</label>
+            </div>
+
+
+            <div class="flex align-items-center">
+              <p-radioButton name="calculationMethod" value="2" [(ngModel)]="selectedCalculationMethod" ></p-radioButton>
+              <label for="valeurVenale" class="ml-2">valeur Venale</label>
+          </div>
+          </div>
+        </div>
+        
+        
+        <div *ngIf="selectedCalculationMethod=='1'">
+          <label for="densite">Densité Urbaine :</label>
+          <select name="nvdensite" id="nvdensite" [(ngModel)]="selectedDensite" >
+            <option *ngFor="let d of densites" [ngValue]="d">{{d.libelle}}</option>   </select>
+        </div>
+  
+        <div *ngIf="selectedCalculationMethod=='2'" >
+          <label for="valeurFinale">Valeur Finale :</label>
+          <input type="number" class="form-control" id="valeur" name="valeur" ngModel required >
+        </div>
+   
+        <div class="container mt-4">
+          <label for="taxe" class="form-label">Le montant de taxe </label>
+          <input type="number" class="form-control" id="taxe" name="taxe" ngModel required [value]="taxe"  disabled="true">
+        </div>
+    </div>
+    <div class="user-space-header col-md-3">
+      <h1>Espace Agent (TNB)</h1>
+      <div *ngIf="afficher">
+        <div class="buttons-container">
+          <div class="d-grid gap-4 col-10 mx-auto btn">
+            <button class="btn btn-secondary" (click)=showDialog() type="button"><i class="fa-regular fa-envelope"></i>  Mail</button>
+            <button class="btn btn-light" (click)=generatePDF() type="button"><i class="fa-regular fa-file-pdf"></i>  Telecharger</button>
+          </div>
+    </div>
+<p-dialog header="Email" [(visible)]="visible" [style]="{width: '50vw'}">
+    
+  <form (ngSubmit)="sendEmail(f)" #f="ngForm" class="row g-3">
+
+    <div >
+      
+      <input type="email" class="form-control" id="to" name="to" ngModel required #to="ngModel" placeholder="A">
+  </div>
+  <div >
+    
+    <input type="text" class="form-control" id="sujet" name="sujet" ngModel required #sujet="ngModel" placeholder="Objet" >
+</div>
+
+<div >
+  <div class="form-floating">
+    <textarea type="text" class="form-control"  id="body" name="body" style="height: 200px" ngModel required #body="ngModel"></textarea>
+   
+  </div>
+  </div>
+
+  <input type="submit" value= "Envoyer" (click)="showDialog()" class="btn btn-danger">
+  </form>
+
+</p-dialog>
+
+     
+        
+      </div>
+    </div>
+
+    <input type="submit" value="calculer" class="button">
+  </form>
+  </div>
+ 

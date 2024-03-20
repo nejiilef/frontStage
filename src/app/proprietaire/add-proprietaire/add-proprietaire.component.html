@@ -1,0 +1,43 @@
+<div class="container mt-2">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" class="row g-3">
+    <div class="col-md-4">
+  
+
+        <label for="cin" class="form-label">CIN  </label>
+        <input type="number" class="form-control" id="cin" name="cin" ngModel number required #c="ngModel" placeholder="رقم بطاقة التعريف" [ngClass]="{'is-invalid':subbmited && this.c.errors}" min="10000000" max="99999999">
+        
+        
+    </div>
+    <div class="col-md-4">
+      <label for="nom" class="form-label">Nom</label>
+      <input type="text" class="form-control" id="prenom" name="prenom" ngModel required #pre="ngModel" placeholder="الإسم" [ngClass]="{'is-invalid':subbmited && this.pre.errors}">
+      
+  </div>
+    <div class="col-md-4">
+      <label for="prenom" class="form-label">Prenom</label>
+      <input type="text" class="form-control" id="nom" name="nom" ngModel required #n="ngModel" placeholder="اللقب" [ngClass]="{'is-invalid':subbmited && this.n.errors}">
+      
+    </div>
+    
+    
+    <label for="floatingInput" class="form-label">Email </label> 
+    <div class="input-group mb-3 col-md-4">
+      
+      <input type="email" class="form-control" id="email" name="email" ngModel email required #e="ngModel" aria-label="Recipient's username" aria-describedby="basic-addon2"  id="floatingInput" placeholder="البريد الإلكتروني" [ngClass]="{'is-invalid':subbmited && this.e.errors}">
+      <span class="input-group-text" id="basic-addon2">@example.com</span>
+    </div>
+      <span class="error" *ngIf="(e!.touched && cl) && e.value && e.errors!=null">le champ email est invalid </span>
+    
+    <div class="col-md-4">
+      <label for="adresse" class="form-label">Adresse</label>
+      <input type="text" class="form-control" id="adresse" name="adresse" ngModel required #s="ngModel" placeholder="العنوان" [ngClass]="{'is-invalid':subbmited && this.s.errors}">
+      
+  </div>
+   
+    <div class="col-md-4">
+      <label for="tel" class="form-label">Numero de telephone </label>
+      <input type="tel" class="form-control" id="tel" name="tel"ngModel required number #t="ngModel" placeholder="رقم الهاتف" [ngClass]="{'is-invalid':subbmited && this.t.errors}" minlength="8" maxlength="8">
+          </div>
+    <button type="submit" class="btn btn-dark" #cl>Ajouter</button>
+
+  </form>

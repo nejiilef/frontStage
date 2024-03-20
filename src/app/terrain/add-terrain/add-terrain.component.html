@@ -1,0 +1,45 @@
+<div class="container mt-2">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" class="row g-3">
+    <div class="col-md-5">
+  
+
+        <label for="surface" class="form-label">Surface</label>
+        <input type="number" class="form-control" id="surface" name="surface" ngModel number required #c="ngModel" placeholder="المساحة" [ngClass]="{'is-invalid':subbmited && this.c.errors}" min="0" max="99999999">
+        
+        
+    </div>
+      
+    <div class="col-md-6">
+      <label for="adresse" class="form-label">Adresse</label>
+      <input type="text" class="form-control" id="adresse" name="adresse" ngModel required #n="ngModel" placeholder="العنوان" [ngClass]="{'is-invalid':subbmited && this.n.errors}">
+      
+    </div>
+    
+    <div class="col-md-4">
+        <label for="arrondissement" class="form-label"> Nom de l'arrondissement</label>
+        <select id="arrondissement" name="arrondissement" [(ngModel)]="selectedArrondissement" class="form-select form-select-sm" (change)="OnArrondissementChange()">
+            <option *ngFor="let a of arrondissements" [ngValue]="a">{{a.nom}}</option>
+
+        </select>
+    </div>
+      
+    <div class="col-md-4" *ngIf="showZoneSelector">
+        <label for="zone" >Nom de la zone </label>
+        <select name="zone" id="zone" [(ngModel)]="selectedZone" class="form-select form-select-sm" (change)="OnZoneChange()">
+            <option *ngFor="let z of zones" [ngValue]="z">{{z.nom}}</option>
+
+        </select>
+    </div>
+    <div class="col-md-4" *ngIf="showRueSelector">
+        <label for="rue" > Nom du rue</label>
+        <select name="rue" id="rue" [(ngModel)]="selectedRue" class="form-select form-select-sm">
+            <option *ngFor="let r of rues" [ngValue]="r">{{r.nom}}</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label for="prop" class="form-label"> id proprietaire</label>
+        <input type="number" class="form-control" id="prop" name="prop" ngModel required #n="ngModel" placeholder="معرف المالك" [ngClass]="{'is-invalid':subbmited && this.n.errors}">
+      </div>
+    <button type="submit" class="btn btn-dark" #cl>Ajouter</button>
+
+  </form>

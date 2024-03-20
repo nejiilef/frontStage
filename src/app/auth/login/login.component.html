@@ -1,0 +1,67 @@
+
+
+
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+<section class="login-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 login-sec">
+                <h2 class="text-center"> Se connecter </h2>
+                <form class="login-form" [formGroup]="loginForm" (ngSubmit)="submitForm()">
+                    <div class="form-group">
+                        <label for="email" >Nom d'utilisateur  </label>
+                        <input type="email" class="form-control" id="email" formControlName="username" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="form-control" id="password" formControlName="password" />
+                    </div>
+                    <button type="submit" class="btn btn-login float-right" [disabled]="loginForm.invalid">Se connecter</button>
+                </form>
+            </div>
+            <div class="col-md-8 banner-sec">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <img class="d-block img-fluid" src="https://i.pinimg.com/736x/55/76/08/55760850f87bed2f84f230761bd0fe16.jpg" >
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="banner-text">
+                                    <h2> Bienvenue</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                                </div>	
+                            </div>
+                        </div>
+                        <!-- Add your other carousel items here -->
+                    </div>
+                </div>	   
+            </div>
+        </div>
+    </div>
+
+    <script>
+         $(document).ready(function () {
+            setInterval(function () {
+                $('#carouselExampleIndicators').carousel('next');
+            }, 3000);
+        });
+    </script>
+</section>
+</body>
+</html>
+<!--https://i.pinimg.com/564x/2c/c5/e5/2cc5e5c03ad1b143b39d1ae700ffeb4a.jpg-->
+
+
+  

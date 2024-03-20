@@ -1,0 +1,47 @@
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Webleb</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+            integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body style="display:flex; align-items:center; justify-content:center;">
+    <div class="login-page">
+      <div class="form" >
+       
+        <form class="login-form" method="post" (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <h2><i class="fa-regular fa-square-plus"></i> Ajouter </h2>
+          <label for="rue" class="form-label">Nom </label>
+          <input type="text" placeholder="Rue" class="form-control" id="nom" name="nom" ngModel  required #c="ngModel" />
+          <label for="arrondissement" class="form-label">Arrondissement </label>
+        <select id="arrondissement" placeholder="Rue"  name="arrondissement" [(ngModel)]="selectedArrondissement" class="form-select form-select-sm" (change)="OnArrondissementChange()">
+            <option value="" disabled selected>Choisissez l'arrondissement</option>
+            <option *ngFor="let a of arrondissements" [ngValue]="a">{{a.nom}}</option>
+
+        </select>
+          <label for="zone" class="form-label">Zone </label>
+        <select id="zone" name="zone" [(ngModel)]="selectedZone" class="form-select form-select-sm" >
+            <option value="" disabled selected>Choisissez la zone</option>
+            <option *ngFor="let z of zones" [ngValue]="z">{{z.nom}}</option>
+
+        </select>
+         <br>
+          <button type="submit" name="send2" >Ajouter</button>
+          
+        </form>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script >$('.message a').click(function(){
+       $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    });</script>
+    </body>
+    </html>
